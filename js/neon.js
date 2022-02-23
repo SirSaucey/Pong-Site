@@ -15,6 +15,7 @@ var paddle1Y = 250;
 var paddle2Y = 250;
 const PADDLE_HEIGHT = 100;
 const PADDLE_VOLUME = 10;
+var audio5 = new Audio("sound/Theme.mp3");
 
 // Mouse Movement
 function calculateMousePos(evt) {
@@ -39,11 +40,12 @@ function calculateMousePos(evt) {
   window.onload = function () {
     canvas = document.getElementById("gameCanvas");
     canvasContext = canvas.getContext("2d");
+    audio5.play();
     var framesPerSecond = 60;
     setInterval(function () {
       moveEverything();
       drawEverything();
-    }, 100 / framesPerSecond);
+    }, 10 / framesPerSecond);
 
   canvas.addEventListener("mousedown", handleMouseClick);
 
@@ -112,13 +114,13 @@ function ballReset() {
 
   function drawNet() {
     for (var i = 0; i < canvas.height; i += 40) {
-      colorRect(canvas.width / 2 - 1, i, 2, 20, "#6495ED");
+      colorRect(canvas.width / 2 - 1, i, 2, 20, "#010B12");
     }
   }
   
   function drawEverything() {
     // Field
-    colorRect(0, 0, canvas.width, canvas.height, "#131313");
+    colorRect(0, 0, canvas.width, canvas.height, "#44D62C");
   
     if (showingWinScreen) {
       canvasContext.fillStyle = "white";
@@ -135,18 +137,17 @@ function ballReset() {
       canvasContext.fillText("CLICK TO CONTINUE", 350, 500);
       return;
     }
-  
     drawNet();
 
  // Paddle 1
- colorRect(10, paddle1Y, PADDLE_VOLUME, PADDLE_HEIGHT, "#6495ED");
+ colorRect(10, paddle1Y, PADDLE_VOLUME, PADDLE_HEIGHT, "#010B12");
 
  // Paddle 2
  colorRect(
-   canvas.width - 10 - PADDLE_VOLUME,paddle2Y,PADDLE_VOLUME,PADDLE_HEIGHT,"#6495ED");
+   canvas.width - 10 - PADDLE_VOLUME,paddle2Y,PADDLE_VOLUME,PADDLE_HEIGHT,"#010B12");
 
  // Ball
- colorCircle(ballX, ballY, 10, "#FFFFFF");
+ colorCircle(ballX, ballY, 10, "#010B12");
 
  canvasContext.fillText(player1Score, 100, 100);
  canvasContext.fillText(player2Score, canvas.width - 100, 100);

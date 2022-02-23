@@ -39,11 +39,12 @@ function calculateMousePos(evt) {
   window.onload = function () {
     canvas = document.getElementById("gameCanvas");
     canvasContext = canvas.getContext("2d");
+    audio5.play();
     var framesPerSecond = 60;
     setInterval(function () {
       moveEverything();
       drawEverything();
-    }, 100 / framesPerSecond);
+    }, 800 / framesPerSecond);
 
   canvas.addEventListener("mousedown", handleMouseClick);
 
@@ -84,21 +85,25 @@ function ballReset() {
   
     if (ballX < 20) {
       if (ballY > paddle1Y && ballY < paddle1Y + PADDLE_HEIGHT) {
+        audio.play();
         ballSpeedX = -ballSpeedX;
         var deltaY = ballY - (paddle1Y + PADDLE_HEIGHT / 2);
         ballSpeedY = deltaY * 0.34;
       } else {
         player2Score++;
+        audio2.play();
         ballReset();
       }
     }
     if (ballX > canvas.width - 20) {
       if (ballY > paddle2Y && ballY < paddle2Y + PADDLE_HEIGHT) {
+        audio.play();
         ballSpeedX = -ballSpeedX;
         var deltaY = ballY - (paddle2Y + PADDLE_HEIGHT / 2);
         ballSpeedY = deltaY * 0.34;
       } else {
         player1Score++;
+        audio2.play();
         ballReset();
       }
     }
@@ -124,8 +129,10 @@ function ballReset() {
       canvasContext.fillStyle = "white";
   
       if (player1Score >= WINNING_SCORE) {
+        audio3.play();
         canvasContext.fillText("Nice one, but can you do it again?", 350, 200);
       } else if (player2Score >= WINNING_SCORE) {
+        audio4.play();
         canvasContext.fillText(
           "Git Gud Nub",
           350,
@@ -135,7 +142,6 @@ function ballReset() {
       canvasContext.fillText("CLICK TO CONTINUE", 350, 500);
       return;
     }
-  
     drawNet();
 
  // Paddle 1
@@ -161,3 +167,9 @@ function colorRect(leftX, topY, width, height, drawColor) {
  canvasContext.fillStyle = drawColor;
  canvasContext.fillRect(leftX, topY, width, height);
 }
+
+    // Audio 
+    var audio = new Audio("sound/dip3.mp3");
+    var audio2 = new Audio("sound/blub.mp3");
+    var audio3 = new Audio("sound/juchu.mp3");
+    var audio4 = new Audio("sound/loose.mp3");
