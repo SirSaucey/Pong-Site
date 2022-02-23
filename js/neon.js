@@ -8,7 +8,7 @@ var ballSpeedY = 2;
 // Score
 var player1Score = 0;
 var player2Score = 0;
-const WINNING_SCORE = 11;
+const WINNING_SCORE = 100;
 var showingWinScreen = false;
 // Paddles
 var paddle1Y = 250;
